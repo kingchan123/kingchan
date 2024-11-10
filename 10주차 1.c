@@ -1,16 +1,18 @@
 #include <stdio.h>
-
-int main() {
-    int x, y, ch;
-    char buffer[100];
-
-    fscanf(stdin, "%d %d", &x, &y);
-    fprintf(stdout, "%d %d\n", x, y);
-
-    while ((ch = getchar()) != '\n');
+#define SIZE 100
+int main()
+{
+    char input[SIZE];
+    FILE* fp = NULL;
     
-    fgets(buffer, 100, stdin);
-    fputs(buffer, stdout);
+    if((fp=fopen("output.bin", "wb")) == NULL){
+        printf("error...");
+        return 0;
+    }
+    gets(input);
+    fwrite(input, strlen(input), 1, fp);
+    
+    fclose(fp);
 
     return 0;
 }
